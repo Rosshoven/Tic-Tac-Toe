@@ -4,10 +4,11 @@
     box-sizing: border-box;
 }
 
-/* creating variables here */
+/* creating color variables here to use in JS file */
 :root {
     --orange: #F2C14E;
     --winning-blocks: #92cce9;
+    --draw-blocks: rgb(242, 76, 76);
 }
 
 body {
