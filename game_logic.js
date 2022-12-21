@@ -15,11 +15,12 @@ let spaces = Array(9).fill(null);
 
 
 const startGame = () => {
-    boxes.forEach(box => box.addEventListener('click', boxClicked))
-}
+    boxes.forEach(box => box.addEventListener('click', boxClicked))    
+    }
 
 function boxClicked(e) {
     const id = e.target.id;
+    
 
 //check if spaces array doesn't contain the id, if this index is equal to null, then fill space with current player choice.
     if(!spaces[id]) {
@@ -27,10 +28,12 @@ function boxClicked(e) {
         e.target.innerText = currentPlayer;
 
         if(playerHasWon() !== false) {
-            playerText.innerText = `${currentPlayer} has won!`
+            // Can't click anymore boxes
+            boxes.forEach(box => box.removeEventListener('click', boxClicked));
+            playerText.innerText = `${currentPlayer} has won!`;
             let winning_blocks = playerHasWon();
-
-            winning_blocks.map(box => boxes[box].style.backgroundColor = winnerIndicator)
+            winning_blocks.map(box => boxes[box].style.backgroundColor = winnerIndicator);
+            
             return
         }
 
@@ -57,7 +60,7 @@ function playerHasWon() {
         // destructuring winning array
         let [a, b, c] = condition;
 
-        if(spaces[a] && (spaces[a] == spaces[b] && spaces[a] == spaces[c])) {
+        if(spaces[a] && (spaces[a] == spaces[b] && spaces[a] == spaces[c])) { 
             return [a ,b ,c];
             
         }
